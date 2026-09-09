@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RepoSec — Top Web Pentesting & OSINT GitHub Repositories</title>
+  <meta name="description" content="Curated directory of the most essential, actively maintained open-source GitHub repositories for Web Penetration Testing, OSINT, Network Diagnostics, and Security Auditing.">
+  <meta name="author" content="Cheekati Gnanadeep">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐙</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand-group">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+            <path d="M9 18c-4.51 2-5-2-7-2"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-name">RepoSec<span>.hub</span></h1>
+          <p class="brand-tagline">Open-Source Cyber Security Repository Index</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <div class="search-wrapper">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search repo, tool, tag (e.g. zap, nuclei, osint)..." autocomplete="off">
+          <span class="search-kbd">⌘K</span>
+        </div>
+
+        <button class="batch-script-btn" id="batchScriptBtn" title="Generate Batch Clone Script">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          <span>Batch Clone Script</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-badge">⚡ TOP-TIER OPEN-SOURCE SECURITY ARSENAL</div>
+      <h2 class="hero-title">Essential GitHub Repositories for Security Professionals</h2>
+      <p class="hero-description">
+        Curated directory of the most respected, actively maintained GitHub repositories for <strong>Web Penetration Testing</strong>, <strong>OSINT &amp; Reconnaissance</strong>, <strong>Network Auditing</strong>, and <strong>Forensic Analysis</strong>. One-click clone commands and direct repository links.
+      </p>
+
+      <!-- Stat Badges -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-num" id="statTotalRepos">40+</span>
+          <span class="stat-label">Indexed Repos</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Core Categories</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Official Sources</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">Instant</span>
+          <span class="stat-label">1-Click Git Clone</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Pills Bar -->
+  <div class="filter-sticky-wrapper">
+    <div class="filter-container" id="categoryFilters">
+      <button class="filter-pill active" data-category="all">
+        <span class="filter-icon">⚡</span>
+        <span>All Repos</span>
+        <span class="filter-count" id="count-all">0</span>
+      </button>
+      <button class="filter-pill" data-category="web-pentest">
+        <span class="filter-icon">🌐</span>
+        <span>Web Pentesting &amp; APIs</span>
+        <span class="filter-count" id="count-web-pentest">0</span>
+      </button>
+      <button class="filter-pill" data-category="osint">
+        <span class="filter-icon">🔍</span>
+        <span>OSINT &amp; Recon</span>
+        <span class="filter-count" id="count-osint">0</span>
+      </button>
+      <button class="filter-pill" data-category="network">
+        <span class="filter-icon">📡</span>
+        <span>Network Diagnostics</span>
+        <span class="filter-count" id="count-network">0</span>
+      </button>
+      <button class="filter-pill" data-category="credential">
+        <span class="filter-icon">🔑</span>
+        <span>Credential &amp; Wordlists</span>
+        <span class="filter-count" id="count-credential">0</span>
+      </button>
+      <button class="filter-pill" data-category="forensics">
+        <span class="filter-icon">🔬</span>
+        <span>DFIR &amp; Forensics</span>
+        <span class="filter-count" id="count-forensics">0</span>
+      </button>
+      <button class="filter-pill" data-category="cloud">
+        <span class="filter-icon">☁️</span>
+        <span>Cloud &amp; Container Security</span>
+        <span class="filter-count" id="count-cloud">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Repositories Grid Section -->
+  <main class="main-content">
+    <div class="main-container">
+      <div class="results-header">
+        <div class="results-info">
+          Showing <span id="showingCount">0</span> repositories in <span id="currentCategoryLabel" class="highlight-cat">All Categories</span>
+        </div>
+        <div class="sort-group">
+          <label for="sortSelect">Sort by:</label>
+          <select id="sortSelect" class="sort-select">
+            <option value="featured">Featured / Essential</option>
+            <option value="name">Repository Name (A-Z)</option>
+            <option value="language">Primary Language</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Repositories Grid Container (Rendered dynamically) -->
+      <div class="repos-grid" id="reposGrid">
+        <!-- Rendered by script.js -->
+      </div>
+
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon">🔍</div>
+        <h3>No matching repositories found</h3>
+        <p>Try searching for a different keyword, language, or clear the category filter.</p>
+        <button class="btn-clear-search" id="clearSearchBtn">Reset Filters</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Batch Clone Modal -->
+  <div class="modal-overlay" id="batchModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-badge">BASH SCRIPT</span>
+          <h3>Batch Clone Selected Categories</h3>
+        </div>
+        <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">Select which category bundles you want to clone to your local machine, then copy the script:</p>
+        
+        <div class="modal-checkboxes" id="modalCategoriesList">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="modal-code-header">
+          <span>Generated Shell Script:</span>
+          <button class="copy-script-btn" id="copyBatchScriptBtn">COPY SCRIPT</button>
+        </div>
+        <pre class="modal-code-block"><code id="batchScriptCode"># Select categories above to generate script</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastNotice">[COPIED TO CLIPBOARD]</div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <strong>RepoSec Hub</strong> — Curated open-source security intelligence directory.
+      </div>
+      <div class="footer-right">
+        <span>For authorized security auditing, educational research, and defense.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
